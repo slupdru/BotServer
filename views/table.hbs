@@ -1,0 +1,89 @@
+
+    <div class="container">
+    <form action="">
+        <div class="columns">
+            <div class="column is-one-quarter">
+          <div class="field">
+            <label class="label">Этаж</label>
+            <p class="control is-expanded has-icons-left">
+              <input class="input" type="text">
+              <span class="icon is-small is-left">
+                <i class="fas fa-hand-peace"></i>
+              </span>
+            </p>
+          </div>
+          </div>
+        <div class="column">          
+          <div class="field">
+            <label class="label">Блоки дежурят</label>
+            <p class="control is-expanded has-icons-left has-icons-right">
+              <input class="input" type="text">
+              <span class="icon is-small is-right">
+                <i class="fas fa-pencil-alt"></i>
+              </span>
+            </p>
+            </div>
+            </div>
+      </div>
+      <div class="field is-grouped is-grouped-right">
+            <p class="control">
+              <a class="button is-primary">
+                Отправить
+              </a>
+            </p>
+          </div>
+    </form>
+    <form action="">
+            <div class="columns">
+                <div class="column is-one-quarter">
+              <div class="field">
+                <label class="label">Этаж</label>
+                <p class="control is-expanded has-icons-left">
+                  <input class="input" type="text">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-hand-peace"></i>
+                  </span>
+                </p>
+              </div>
+              </div>
+            <div class="column">          
+              <div class="field">
+                <label class="label">Сегодня дежурит</label>
+                <p class="control is-expanded has-icons-left has-icons-right">
+                  <input class="input" type="text">
+                  <span class="icon is-small is-right">
+                    <i class="fas fa-pencil-alt"></i>
+                  </span>
+                </p>
+                </div>
+                </div>
+          </div>
+          <div class="field is-grouped is-grouped-right">
+                <p class="control">
+                  <a class="button is-primary">
+                    Отправить
+                  </a>
+                </p>
+              </div>
+
+              <table class="table is-bordered is-fullwidth">
+                    <thead>
+                        <tr>
+                            <th>Этаж</th>
+                            <th>Сегодня дежурят</th>
+                            <th>Блоки которые дежурят (вообще)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      {{#each floors}}
+                        <tr>
+                            <th>{{this.floor}}</th>
+                            <td>{{this.today}}</td>
+                            <td>{{this.allrooms}}</td>
+                        </tr>
+                      {{/each}}
+                    </tbody>
+                </table>
+      </div>
+
+      
