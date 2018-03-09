@@ -3,38 +3,40 @@ const exphbs = require("express-handlebars");
 const handlebars = require("handlebars");
 const express = require("express");
 const passport = require("passport");
-const session = require("express-session");
+const Strategy = require('passport-local').Strategy;
+const db = require('./db');
+
+passport.use(new Strategy(
+  function(username, password, cb) {
+    db.users.findByUsername(username, function(err, user) {
+      if (err) { return cb(err); }
+      if (!user) { return cb(null, false); }
+      if (user.password != password) { return cb(null, false); }
+      return cb(null, user);
+    });
+  }));
+  passport.serializeUser(function(user, cb) {
+    cb(null, user.id);
+  });
+  
+  passport.deserializeUser(function(id, cb) {
+    db.users.findById(id, function (err, user) {
+      if (err) { return cb(err); }
+      cb(null, user);
+    });
+  });
+
 const app = express();
-const mysql = require("mysql");
-// const connection = mysql.createConnection({
-//     host:'shelmets.mysql.pythonanywhere-services.com',
-//     user:'shelmets'
-// });
-// connection.connect();
-// app.use(session({
-//     store: new RedisStore({
-//         url: config.redisStore.url
-//     }),
-//     secret: config.redisStore.secret,
-//     resave: false,
-//     saveUninitialized: false
-// }))
-// app.use(passport.initialize())
-// app.use(passport.session())
-let data = {
-  floors: [
-    {
-      floor: "10",
-      today: "1002",
-      allrooms: "1002,1003"
-    },
-    {
-      floor: "9",
-      today: "902",
-      allrooms: "902,903"
-    }
-  ]
-};
+
+app.set("view engine", ".hbs");
+app.set("views", path.join(__dirname + '/views'));
+
+//app.use(require('morgan')('combined'));
+app.use(require('cookie-parser')());
+app.use(require('body-parser').urlencoded({ extended: true }));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.engine(
   ".hbs",
@@ -45,15 +47,41 @@ app.engine(
     partialsDir: path.join(__dirname + '/views')
   })
 );
-app.set("view engine", ".hbs");
-app.set("views", path.join(__dirname + '/views'));
 
-app.get("/", (req, res) => {
-  res.render('loginPage');
+function addNewBlocks(floor, blocks){
+  
+}
+
+app.get('/',
+  function(req, res){
+    res.redirect('/login')
+  });
+  
+app.get('/login',
+  function(req, res){
+    res.render('loginPage');
+  });
+
+app.post('/login', 
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  function(req, res) {
+    db.data.userLogin = req.user.username;
+    res.redirect('/table');
+  });
+  
+app.post('/blockall',
+  function(req, res) {
+  console.log(req.body)
+    res.redirect('/table');
+  });
+app.get('/logout',
+function(req, res){
+  req.logout();
+  res.redirect('/login');
 });
-app.get("/table", (req, res) => {
-  res.render("table", data);
+app.get("/table", require('connect-ensure-login').ensureLoggedIn(),(req, res) => {
+  res.render("table", db.data);
 });
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/views"));
 app.listen(3000, () => console.log("server start in port:3000"));

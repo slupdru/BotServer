@@ -1,12 +1,17 @@
 
     <div class="container">
-    <form action="">
+    <div class="user">
+      <div class="user_container">      
+      <div class="login">Вы вошли как : {{userLogin}}</div>
+      <a href="/logout">Выйти!</a></div>
+    </div>
+    <form action="/blockall" method="post">
         <div class="columns">
             <div class="column is-one-quarter">
           <div class="field">
             <label class="label">Этаж</label>
             <p class="control is-expanded has-icons-left">
-              <input class="input" type="text">
+              <input class="input" name="floor1" type="text">
               <span class="icon is-small is-left">
                 <i class="fas fa-hand-peace"></i>
               </span>
@@ -17,7 +22,7 @@
           <div class="field">
             <label class="label">Блоки дежурят</label>
             <p class="control is-expanded has-icons-left has-icons-right">
-              <input class="input" type="text">
+              <input class="input" name="blocks"  type="text">
               <span class="icon is-small is-right">
                 <i class="fas fa-pencil-alt"></i>
               </span>
@@ -27,9 +32,7 @@
       </div>
       <div class="field is-grouped is-grouped-right">
             <p class="control">
-              <a class="button is-primary">
-                Отправить
-              </a>
+              <input type="submit" class="button is-primary" value="Отправить">
             </p>
           </div>
     </form>
@@ -60,9 +63,7 @@
           </div>
           <div class="field is-grouped is-grouped-right">
                 <p class="control">
-                  <a class="button is-primary">
-                    Отправить
-                  </a>
+              <input type="submit" class="button is-primary" value="Отправить">
                 </p>
               </div>
 
