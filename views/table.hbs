@@ -36,13 +36,13 @@
             </p>
           </div>
     </form>
-    <form action="">
+    <form action="blocknow" method="POST">
             <div class="columns">
                 <div class="column is-one-quarter">
               <div class="field">
                 <label class="label">Этаж</label>
                 <p class="control is-expanded has-icons-left">
-                  <input class="input" type="text">
+                  <input class="input" name="floor2" type="text">
                   <span class="icon is-small is-left">
                     <i class="fas fa-hand-peace"></i>
                   </span>
@@ -53,7 +53,7 @@
               <div class="field">
                 <label class="label">Сегодня дежурит</label>
                 <p class="control is-expanded has-icons-left has-icons-right">
-                  <input class="input" type="text">
+                  <input class="input" name="blocknow" type="text">
                   <span class="icon is-small is-right">
                     <i class="fas fa-pencil-alt"></i>
                   </span>
@@ -66,7 +66,7 @@
               <input type="submit" class="button is-primary" value="Отправить">
                 </p>
               </div>
-
+</form>
               <table class="table is-bordered is-fullwidth">
                     <thead>
                         <tr>
@@ -78,7 +78,7 @@
                     <tbody>
                       {{#each floors}}
                         <tr>
-                            <th>{{this.floor}}</th>
+                            <th>{{@key}}</th>
                             <td>{{this.today}}</td>
                             <td>{{this.allrooms}}</td>
                         </tr>
