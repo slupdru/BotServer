@@ -1,20 +1,19 @@
-.main{
-    margin-top: 2em;
+.main {
+  margin-top: 2em;
 }
-.form_aut{
-    margin-top: 2em;
+.form_aut {
+  margin-top: 2em;
 }
-.button_enter{
-    width: 200px;
-
+.button_enter {
+  width: 200px;
 }
-.table{
-    margin-top: 3em;
+.table {
+  margin-top: 3em;
 }
-.user{
-    display: flex;
-    flex-direction: row-reverse;
+.user {
+  display: flex;
+  flex-direction: row-reverse;
 }
-.label{
-    margin-left: 5px;
+.label {
+  margin-left: 5px;
 }

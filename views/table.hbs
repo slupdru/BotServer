@@ -1,90 +1,88 @@
-
-    <div class="container">
-    <div class="user">
-      <div class="user_container">      
+<div class="container">
+  <div class="user">
+    <div class="user_container">
       <div class="login">Вы вошли как : {{userLogin}}</div>
-      <a href="/logout">Выйти!</a></div>
+      <a href="/logout">Выйти!</a>
     </div>
-    <form action="/blockall" method="post">
-        <div class="columns">
-            <div class="column is-one-quarter">
-          <div class="field">
-            <label class="label">Этаж</label>
-            <p class="control is-expanded has-icons-left">
-              <input class="input" name="floor1" type="text">
-              <span class="icon is-small is-left">
-                <i class="fas fa-hand-peace"></i>
-              </span>
-            </p>
-          </div>
-          </div>
-        <div class="column">          
-          <div class="field">
-            <label class="label">Блоки дежурят</label>
-            <p class="control is-expanded has-icons-left has-icons-right">
-              <input class="input" name="blocks"  type="text">
-              <span class="icon is-small is-right">
-                <i class="fas fa-pencil-alt"></i>
-              </span>
-            </p>
-            </div>
-            </div>
+  </div>
+  <form action="/blockall" method="post">
+    <div class="columns">
+      <div class="column is-one-quarter">
+        <div class="field">
+          <label class="label">Этаж</label>
+          <p class="control is-expanded has-icons-left">
+            <input class="input" name="floor1" type="text">
+            <span class="icon is-small is-left">
+              <i class="fas fa-hand-peace"></i>
+            </span>
+          </p>
+        </div>
       </div>
-      <div class="field is-grouped is-grouped-right">
-            <p class="control">
-              <input type="submit" class="button is-primary" value="Отправить">
-            </p>
-          </div>
-    </form>
-    <form action="blocknow" method="POST">
-            <div class="columns">
-                <div class="column is-one-quarter">
-              <div class="field">
-                <label class="label">Этаж</label>
-                <p class="control is-expanded has-icons-left">
-                  <input class="input" name="floor2" type="text">
-                  <span class="icon is-small is-left">
-                    <i class="fas fa-hand-peace"></i>
-                  </span>
-                </p>
-              </div>
-              </div>
-            <div class="column">          
-              <div class="field">
-                <label class="label">Сегодня дежурит</label>
-                <p class="control is-expanded has-icons-left has-icons-right">
-                  <input class="input" name="blocknow" type="text">
-                  <span class="icon is-small is-right">
-                    <i class="fas fa-pencil-alt"></i>
-                  </span>
-                </p>
-                </div>
-                </div>
-          </div>
-          <div class="field is-grouped is-grouped-right">
-                <p class="control">
-              <input type="submit" class="button is-primary" value="Отправить">
-                </p>
-              </div>
-</form>
-              <table class="table is-bordered is-fullwidth">
-                    <thead>
-                        <tr>
-                            <th>Этаж</th>
-                            <th>Сегодня дежурят</th>
-                            <th>Блоки которые дежурят (вообще)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      {{#each floors}}
-                        <tr>
-                            <th>{{@key}}</th>
-                            <td>{{this.today}}</td>
-                            <td>{{this.allrooms}}</td>
-                        </tr>
-                      {{/each}}
-                    </tbody>
-                </table>
+      <div class="column">
+        <div class="field">
+          <label class="label">Блоки дежурят</label>
+          <p class="control is-expanded has-icons-left has-icons-right">
+            <input class="input" name="blocks" type="text">
+            <span class="icon is-small is-right">
+              <i class="fas fa-pencil-alt"></i>
+            </span>
+          </p>
+        </div>
       </div>
-
-      
+    </div>
+    <div class="field is-grouped is-grouped-right">
+      <p class="control">
+        <input type="submit" class="button is-primary" value="Отправить">
+      </p>
+    </div>
+  </form>
+  <form action="blocknow" method="POST">
+    <div class="columns">
+      <div class="column is-one-quarter">
+        <div class="field">
+          <label class="label">Этаж</label>
+          <p class="control is-expanded has-icons-left">
+            <input class="input" name="floor2" type="text">
+            <span class="icon is-small is-left">
+              <i class="fas fa-hand-peace"></i>
+            </span>
+          </p>
+        </div>
+      </div>
+      <div class="column">
+        <div class="field">
+          <label class="label">Сегодня дежурит</label>
+          <p class="control is-expanded has-icons-left has-icons-right">
+            <input class="input" name="blocknow" type="text">
+            <span class="icon is-small is-right">
+              <i class="fas fa-pencil-alt"></i>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="field is-grouped is-grouped-right">
+      <p class="control">
+        <input type="submit" class="button is-primary" value="Отправить">
+      </p>
+    </div>
+  </form>
+  <table class="table is-bordered is-fullwidth">
+    <thead>
+      <tr>
+        <th>Этаж</th>
+        <th>Сегодня дежурят</th>
+        <th>Блоки которые дежурят (вообще)</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each floors}}
+      <tr>
+        <th>{{@key}}</th>
+        <td>{{this.today}}</td>
+        <td>{{this.allrooms}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
